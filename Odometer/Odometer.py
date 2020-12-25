@@ -3,7 +3,11 @@ class Odometer:
     def __init__(self, size):
         self.START = int(Odometer.DIGITS[:size])
         self.LIMIT = int(Odometer.DIGITS[-size:])
-        self.reading = self.START 
+        self.SIZE = size
+        self.readings = []
+        for n in range(10 ** (size - 1), 10 ** size):
+            if self.is_ascending(n):
+                self.readings.append(n) 
 
     def is_ascending(self, n : int) -> bool:
         return n == int(''.join(sorted(str(n))))
@@ -40,4 +44,4 @@ class Odometer:
 
 
     def readings_in_range(self, start : int, limit : int) -> list:
-        return [i for i in range(start, limit) if self.is_ascending(i)]
+        return self.readings[start : limit + 1]
