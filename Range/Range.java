@@ -22,84 +22,84 @@ public class Range {
 
 	private void reset() {
 		this.start = this.end = 0;
-    }
+    	}
     
-    protected boolean isVaild (int start, int end) {
-        return start <= end;
-    }
+    	protected boolean isVaild (int start, int end) {
+        	return start <= end;
+    	}
 
-    public int getStart() {
-        return this.start;
-    }
+    	public int getStart() {
+        	return this.start;
+    	}
 
-    public void setStart(int newStart) {
-        if (isVaild(newStart, this.end)) {
-            this.start = newStart;
-        } else {
-            throw new IllegalArgumentException("Illegal range");
-        }
-    }
+    	public void setStart(int newStart) {
+        	if (isVaild(newStart, this.end)) {
+            		this.start = newStart;
+        	} else {
+            		throw new IllegalArgumentException("Illegal range");
+        	}
+    	}
 
-    public int getEnd() {
-        return this.end;
-    }
+    	public int getEnd() {
+        	return this.end;
+    	}
 
-    public void setEnd(int newEnd) {
-        if (isVaild(this.start, newEnd)) {
-            this.end = newEnd;
-        } else {
-            throw new IllegalArgumentException("Illegal range");
-        }
-    }
+    	public void setEnd(int newEnd) {
+        	if (isVaild(this.start, newEnd)) {
+            		this.end = newEnd;
+        	} else {
+            		throw new IllegalArgumentException("Illegal range");
+        	}
+    	}
 
 	public void rStretch() {
-        this.end++;
-    }
+        	this.end++;
+    	}
 
-    public void rStretch(int n) {
-        this.end += n;
-    }
+    	public void rStretch(int n) {
+        	this.end += n;
+    	}	
 
-    public void lStretch() {
-        this.start--;
-    }
+    	public void lStretch() {
+        	this.start--;
+    	}
 
-    public void lStretch(int n) {
-        this.end -= n;
-    }
+    	public void lStretch(int n) {
+        	this.end -= n;
+    	}
 
-    public void stretch() {
-        this.start--;
-        this.end++;
-    }
+    	public void stretch() {
+        	this.start--;
+        	this.end++;
+    	}
 
-    public void stretch(int n) {
-        this.start -= n;
-        this.end += n;
-    }
+    	public void stretch(int n) {
+        	this.start -= n;
+        	this.end += n;
+    	}
 
-    public void squeeze() {
-        this.start++;
-        this.end--;
-        if (this.start > this.end)
-            this.reset();
-    }
+    	public void squeeze() {
+        	this.start++;
+        	this.end--;
+        	if (this.start > this.end)
+            		this.reset();
+    	}
 
-    public void squeeze(int n) {
-        this.start += n;
-        this.end -= n;
-        if (this.start > this.end)
-            this.reset();
-    }
+    	public void squeeze(int n) {
+        	this.start += n;
+        	this.end -= n;
+        	if (this.start > this.end)
+            	this.reset();
+    	}
 
-    public void shift(int n) {
-        this.start += n;
-        this.end += n;
-    }
+    	public void shift(int n) {
+        	this.start += n;
+        	this.end += n;
+    	}	
     
-    public int length() {
-        return this.end - this.start + 1;
-    }
+    	public int length() {
+        	return this.end - this.start + 1;
+    	}
 	
 	public Range combine (Range range2) {
 		int newStart = this.start <= range2.start ? this.start : range2.start;
@@ -133,24 +133,24 @@ public class Range {
 	}
 
 	public boolean lessThan (Range r) {
-        return this.start < r.start;
-    }
+        	return this.start < r.start;
+    	}
     
-    public boolean moreThan (Range r) {
-        return this.start > r.start;
-    }
+    	public boolean moreThan (Range r) {
+        	return this.start > r.start;
+    	}
 	
 	public Range merge(Range r) {
-        if (this.isDisjoint(r)) {
-            return new Range();
-        }
-        int a = Math.min(this.start, r.start);
-        int b = Math.max(this.end, r.end);
-        return new Range(a, b);
-    } 
+        	if (this.isDisjoint(r)) {
+            		return new Range();
+        	}
+        	int a = Math.min(this.start, r.start);
+        	int b = Math.max(this.end, r.end);
+        	return new Range(a, b);
+    	} 
 
-    @Override
-    public String toString() {
-        return "[" + String.valueOf(start) + " , " + String.valueOf(end) + ")";
-    }
+    	@Override
+    	public String toString() {
+        	return "[" + String.valueOf(start) + " , " + String.valueOf(end) + ")";
+    	}
 }
