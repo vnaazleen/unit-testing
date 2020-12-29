@@ -3,8 +3,8 @@ package Interval;
 import java.lang.Math;
 
 public class Interval {
-	private int start;
-	private int limit;
+	protected int start;
+	protected int limit;
 
 	public Interval (int e) {
 		this.start = 0;
@@ -40,11 +40,11 @@ public class Interval {
         }
     }
 
-    public int getlimit() {
+    public int getLimit() {
         return this.limit;
     }
 
-    public void setlimit(int newlimit) {
+    public void setLimit(int newlimit) {
         if (isVaild(this.start, newlimit)) {
             this.limit = newlimit;
         } else {
