@@ -24,14 +24,6 @@ public class OpenInterval extends Interval {
     }
 
     @Override
-    public Interval combine (Interval Interval2) {
-		int newStart = this.start <= Interval2.start ? this.start : Interval2.start;
-		int newlimit = this.limit >= Interval2.limit ? this.limit : Interval2.limit;
-
-		return new Interval(newStart - 1, newlimit);
-	}
-
-    @Override
     public String toString() {
         return "(" + this.start + " , " + this.limit + ")";
     }
