@@ -22,7 +22,35 @@ public class Range {
 
 	private void reset() {
 		this.start = this.end = 0;
-	}
+    }
+    
+    protected boolean isVaild (int start, int end) {
+        return start <= end;
+    }
+
+    public int getStart() {
+        return this.start;
+    }
+
+    public void setStart(int newStart) {
+        if (isVaild(newStart, this.end)) {
+            this.start = newStart;
+        } else {
+            throw new IllegalArgumentException("Illegal range");
+        }
+    }
+
+    public int getEnd() {
+        return this.end;
+    }
+
+    public void setEnd(int newEnd) {
+        if (isVaild(this.start, newEnd)) {
+            this.end = newEnd;
+        } else {
+            throw new IllegalArgumentException("Illegal range");
+        }
+    }
 
 	public void rStretch() {
         this.end++;
@@ -72,10 +100,6 @@ public class Range {
     public int length() {
         return this.end - this.start + 1;
     }
-
-	public String toString() {
-        return "[" + this.start + ", " + this.end + ")";
-    }
 	
 	public Range combine (Range range2) {
 		int newStart = this.start <= range2.start ? this.start : range2.start;
@@ -108,34 +132,13 @@ public class Range {
 		return range.start == end - 1 || range.end - 1 == start;
 	}
 
-	public boolean lessThan(Range r) {
+	public boolean lessThan (Range r) {
         return this.start < r.start;
-	}
-
-	public enum Relation {
-        SUBSET, SUPERSET, OVERLAPL, OVERLAPR, TOUCHINGL, TOUCHINGR, LESSDISJOINT, MOREDISJOINT, SAME;
     }
-	
-	public Relation classify(Range r) {
-        if (this.end == r.start) 
-            return Relation.TOUCHINGR;
-        if (this.start == r.end)
-            return Relation.TOUCHINGL;
-        if (this.equals(r))
-            return Relation.SAME;
-        if (this.contains(r)) 
-            return Relation.SUPERSET;
-        if (r.contains(this))
-            return Relation.SUBSET;
-        if (this.isDisjoint(r))
-            if (this.start > r.end)
-                return Relation.MOREDISJOINT;
-            else
-                return Relation.LESSDISJOINT;
-        if (this.lessThan(r))
-            return Relation.OVERLAPL;
-        return Relation.OVERLAPR;
-	}
+    
+    public boolean moreThan (Range r) {
+        return this.start > r.start;
+    }
 	
 	public Range merge(Range r) {
         if (this.isDisjoint(r)) {
@@ -145,4 +148,9 @@ public class Range {
         int b = Math.max(this.end, r.end);
         return new Range(a, b);
     } 
+
+    @Override
+    public String toString() {
+        return "[" + String.valueOf(start) + " , " + String.valueOf(end) + ")";
+    }
 }

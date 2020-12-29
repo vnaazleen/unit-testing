@@ -59,6 +59,6 @@ public class Odometer {
 	    if (this.position >= b.position) 
 		    return this.position - b.position;
 	    else 
-		    return this.position - b.position + b.length;
+		    return this.position - b.position + this.length;
     }
 }
