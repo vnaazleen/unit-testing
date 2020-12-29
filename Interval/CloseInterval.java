@@ -34,7 +34,7 @@ public class CloseInterval extends Interval {
 
     @Override
     public String toString() {
-        return "(" + this.start + " , " + this.limit + ")";
+        return "[" + this.start + " , " + this.limit + "]";
     }
 }
 
