@@ -98,15 +98,8 @@ public class Interval {
     }
     
     public int length() {
-        return this.limit - this.start + 1;
+        return this.limit - this.start;
     }
-	
-	public Interval combine (Interval Interval2) {
-		int newStart = this.start <= Interval2.start ? this.start : Interval2.start;
-		int newlimit = this.limit >= Interval2.limit ? this.limit : Interval2.limit;
-
-		return new Interval(newStart, newlimit);
-	}
 	
 	public Boolean contains (Interval Interval2) {
 		return this.start <= Interval2.start && this.limit >= Interval2.limit;
