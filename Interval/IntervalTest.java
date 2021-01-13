@@ -39,10 +39,9 @@ public class IntervalTest {
     }
 
     @Test
-    public void length() {
+    public void testLength() {
         assertEquals(5, interval1.length());
         assertEquals(3, interval2.length());
     }
-
 
 }
