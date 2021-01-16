@@ -6,7 +6,7 @@ def test_reset():
     r.reset()
     assert r.start == 0 and r.limit == 0
 
-def test_strech():
+def test_stretch():
     r1 = Range(2, 4)
     r1.stretch()
 
@@ -106,23 +106,23 @@ def test_lessthan():
     r2 = Range(1, 5)
     r3 = Range(2, 3)
 
-    assert r1.lessthan(r2) == True
+    assert r1.lessthan(r2) == False
     assert r2.lessthan(r3) == True
-    assert r1.leesthan(r3) == False
+    assert r1.lessthan(r3) == True
 
 def test_morethan():
     r1 = Range(2, 5)
     r2 = Range(1, 5)
     r3 = Range(2, 3)
 
-    assert r1.lessthan(r2) == False
-    assert r2.lessthan(r3) == False
-    assert r1.leesthan(r3) == True
+    assert r1.morethan(r2) == True
+    assert r2.morethan(r3) == False
+    assert r1.morethan(r3) == False
 
 def test_merge():
     r1 = Range(2, 5)
     r2 = Range(1, 3)
 
-    r1.merge(r2)
+    r3 = r1.merge(r2)
 
-    assert r1.start == 1 and r2.start == 5
+    assert r3.start == 1 and r3.limit == 5
