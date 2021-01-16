@@ -61,3 +61,6 @@ class Range:
         new_limit = max(self.start, self.limit)
 
         return Range(new_start, new_limit)
+
+    def to_string(self):
+        return "[" + str(self.start) + ", " + str(self.limit) + ")"
